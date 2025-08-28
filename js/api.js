@@ -1,7 +1,7 @@
 // API service for IELTS Results app
 class ApiService {
     constructor() {
-        this.baseURL = '/api';
+        this.baseURL = 'https://ieltsspeakingbot-production.up.railway.app';
         this.defaultTimeout = 15000; // 15 seconds
         this.retryAttempts = 3;
         this.retryDelay = 1000; // 1 second
@@ -73,7 +73,6 @@ class ApiService {
 
         const defaultOptions = {
             method: 'GET',
-            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -118,19 +117,7 @@ class ApiService {
                 logger.warn('API', 'Response is not JSON', { contentType, url });
             }
 
-            // Try to parse as JSON regardless of content-type
-            let data;
-            try {
-                data = await response.json();
-            } catch (jsonError) {
-                const text = await response.text();
-                logger.error('API', 'Failed to parse response as JSON', { 
-                    contentType, 
-                    responseText: text.substring(0, 200),
-                    error: jsonError.message 
-                });
-                throw new Error('Invalid JSON response from server');
-            }
+            const data = await response.json();
             
             logger.debug('API', 'Request successful', {
                 url,
