@@ -1,0 +1,273 @@
+/* Responsive CSS - Mobile and tablet styles */
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px;
+    }
+
+    .scores-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+    }
+
+    .session-header {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .session-info,
+    .conversation {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .session-header {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .info-card {
+        padding: 12px;
+    }
+
+    .scores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .score-card {
+        padding: 15px;
+    }
+
+    .score-value {
+        font-size: 2rem;
+    }
+
+    .detailed-scores {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .detailed-score {
+        padding: 10px;
+    }
+
+    .question,
+    .transcript {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .feedback {
+        padding: 15px;
+    }
+
+    .feedback-item {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .loading {
+        min-height: 300px;
+    }
+
+    .loading-spinner {
+        width: 35px;
+        height: 35px;
+        border-width: 3px;
+    }
+
+    .error {
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .error h2 {
+        font-size: 1.25rem;
+    }
+
+    .error p {
+        font-size: 1rem;
+    }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+    .container {
+        padding: 8px;
+    }
+
+    .header {
+        margin-bottom: 20px;
+        padding: 15px 0;
+    }
+
+    .header h1 {
+        font-size: 1.75rem;
+    }
+
+    .session-info,
+    .conversation {
+        padding: 15px;
+        margin-bottom: 12px;
+    }
+
+    .scores-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .score-card {
+        padding: 12px;
+    }
+
+    .score-value {
+        font-size: 1.75rem;
+    }
+
+    .detailed-scores {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .detailed-score .value {
+        font-size: 1.1rem;
+    }
+
+    .question-text,
+    .transcript-text {
+        font-size: 1rem;
+    }
+
+    .feedback {
+        padding: 12px;
+    }
+
+    .additional-analysis {
+        padding: 12px;
+    }
+
+    .analysis-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .analysis-item {
+        padding: 8px;
+    }
+}
+
+/* Large screen styles */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+        padding: 30px;
+    }
+
+    .header h1 {
+        font-size: 3rem;
+    }
+
+    .header p {
+        font-size: 1.25rem;
+    }
+
+    .session-info,
+    .conversation {
+        padding: 30px;
+    }
+
+    .scores-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 25px;
+    }
+
+    .score-card {
+        padding: 25px;
+    }
+
+    .score-value {
+        font-size: 3rem;
+    }
+}
+
+/* Print responsive styles */
+@media print {
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+
+    .scores-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        page-break-inside: avoid;
+    }
+
+    .conversation {
+        page-break-inside: avoid;
+        margin-bottom: 15px;
+    }
+
+    .detailed-scores {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .loading,
+    .error {
+        display: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .score-card,
+    .session-info,
+    .conversation {
+        border: 2px solid #000;
+    }
+
+    .info-card,
+    .detailed-score {
+        border: 1px solid #333;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .loading-spinner {
+        animation: none;
+        border-top-color: transparent;
+    }
+
+    .fade-in {
+        animation: none;
+    }
+
+    .score-card:hover,
+    .info-card:hover,
+    .detailed-score:hover {
+        transform: none;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
