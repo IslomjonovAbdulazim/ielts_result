@@ -45,12 +45,13 @@ app.use('/api', createProxyMiddleware({
 // Static files come after API proxy
 app.use(express.static(path.join(__dirname)));
 
-// Catch-all for SPA routes (except API)
-app.get('*', (req, res) => {
-    // Don't serve HTML for API routes
-    if (req.path.startsWith('/api')) {
-        return res.status(404).json({ error: 'API endpoint not found' });
-    }
+// Serve index.html for the root route only
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Handle all other non-API routes by serving index.html
+app.get(/^(?!\/api).*/, (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
