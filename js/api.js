@@ -1,7 +1,9 @@
 // API service for IELTS Results app
 class ApiService {
     constructor() {
-        this.baseURL = 'https://ieltsspeakingbot-production.up.railway.app';
+        this.baseURL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? '/api'
+            : 'https://ieltsspeakingbot-production.up.railway.app';
         this.defaultTimeout = 15000; // 15 seconds
         this.retryAttempts = 3;
         this.retryDelay = 1000; // 1 second
@@ -73,6 +75,7 @@ class ApiService {
 
         const defaultOptions = {
             method: 'GET',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
