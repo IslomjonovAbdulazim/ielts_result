@@ -118,7 +118,19 @@ class ApiService {
                 logger.warn('API', 'Response is not JSON', { contentType, url });
             }
 
-            const data = await response.json();
+            // Try to parse as JSON regardless of content-type
+            let data;
+            try {
+                data = await response.json();
+            } catch (jsonError) {
+                const text = await response.text();
+                logger.error('API', 'Failed to parse response as JSON', { 
+                    contentType, 
+                    responseText: text.substring(0, 200),
+                    error: jsonError.message 
+                });
+                throw new Error('Invalid JSON response from server');
+            }
             
             logger.debug('API', 'Request successful', {
                 url,

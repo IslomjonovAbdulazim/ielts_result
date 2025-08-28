@@ -28,6 +28,11 @@ app.use('/api', createProxyMiddleware({
     onProxyRes: (proxyRes, req, res) => {
         console.log(`[PROXY] Response ${proxyRes.statusCode} for ${req.url}`);
         console.log(`[PROXY] Content-Type: ${proxyRes.headers['content-type']}`);
+        
+        // Ensure JSON responses have correct content-type
+        if (proxyRes.statusCode === 200 && req.url.includes('/session/')) {
+            res.setHeader('Content-Type', 'application/json');
+        }
     },
     onError: (err, req, res) => {
         console.error('[PROXY] Proxy error:', err.message);
