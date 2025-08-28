@@ -7,10 +7,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: ['https://result.ieltsly.uz', 'http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: ['https://result.ieltsly.uz', 'http://localhost:3000', 'http://127.0.0.1:3000', 'https://result.ieltsly.uz:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'User-Agent'],
-    credentials: true
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'User-Agent', 'X-Requested-With'],
+    credentials: true,
+    optionsSuccessStatus: 200
 }));
 
 app.use('/api', createProxyMiddleware({

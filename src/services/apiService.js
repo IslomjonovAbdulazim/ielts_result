@@ -4,10 +4,8 @@ import { Utils } from '../utils/helpers';
 // API service for IELTS Results app
 class ApiService {
     constructor() {
-        // Use proxy in development, full URL in production
-        this.baseURL = process.env.NODE_ENV === 'development' 
-            ? '' // Use proxy
-            : 'https://ieltsspeakingbot-production.up.railway.app';
+        // Always use proxy to avoid CORS issues
+        this.baseURL = '/api';
         this.defaultTimeout = 15000; // 15 seconds
         this.retryAttempts = 3;
         this.retryDelay = 1000; // 1 second
